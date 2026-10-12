@@ -10,29 +10,36 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;background:#06000e;-webkit-text-size-adjust:100%;}
-button,a{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:none;border:none;outline:none;font:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+a{-webkit-appearance:none;appearance:none;background:none;border:none;outline:none;font:inherit;cursor:pointer;}
 .uni{width:100%;height:100%;overflow:hidden;position:relative;font-family:'Inter',sans-serif;color:#fff;}
+
+/* Stars */
 .stars-bg{position:fixed;inset:0;pointer-events:none;z-index:1;}
 .star-bg{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) ease-in-out infinite alternate;}
 @keyframes twinkle{0%{opacity:.1;}100%{opacity:.9;}}
 canvas#shootCanvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
+
+/* GIFT SCREEN */
 .gift-screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity .9s,transform .9s;padding:2rem;background:radial-gradient(ellipse at center,rgba(80,0,120,.35) 0%,#06000e 70%);}
 .gift-screen.gone{opacity:0;pointer-events:none;transform:scale(1.05);}
-.gift-logo{font-family:'Cinzel',serif;font-size:110px;font-weight:700;color:#f0d080;text-shadow:0 0 60px rgba(212,175,55,.9),0 0 120px rgba(212,175,55,.4);margin-bottom:24px;line-height:1;}
+.gift-logo{font-family:'Cinzel',serif;font-size:110px;font-weight:700;color:#f0d080;text-shadow:0 0 60px rgba(212,175,55,.9),0 0 120px rgba(212,175,55,.4);margin-bottom:16px;line-height:1;}
 .gift-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:#c9a84c;text-transform:uppercase;text-align:center;margin-bottom:8px;}
 .gift-headline{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:#f0d080;text-align:center;line-height:1.5;margin-bottom:8px;text-shadow:0 0 30px rgba(212,175,55,.7);}
 .gift-sub{font-size:13px;color:#c084fc;text-align:center;letter-spacing:1px;margin-bottom:32px;line-height:1.8;}
-.tap-area{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#f0d080;border:1px solid rgba(212,175,55,.5);padding:13px 30px;border-radius:50px;background:rgba(212,175,55,.07);text-align:center;cursor:pointer;}
-.seven-screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:9;background:radial-gradient(ellipse at center,rgba(80,0,120,.5) 0%,#06000e 70%);}
+.tap-area{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#f0d080;border:1px solid rgba(212,175,55,.5);padding:13px 30px;border-radius:50px;background:rgba(212,175,55,.07);text-align:center;cursor:pointer;display:inline-block;}
+
+/* SEVEN SCREEN */
+.seven-screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:7;background:radial-gradient(ellipse at center,rgba(80,0,120,.5) 0%,#06000e 70%);}
 .seven-screen.show{animation:sevReveal 4s ease forwards;}
-.seven-screen.hide{opacity:0;pointer-events:none;}
 @keyframes sevReveal{0%{opacity:0;}8%{opacity:1;}75%{opacity:1;}100%{opacity:0;}}
 .seven-num{font-family:'Cinzel',serif;font-size:120px;font-weight:700;color:#f0d080;letter-spacing:8px;text-shadow:0 0 60px rgba(212,175,55,.9),0 0 120px rgba(212,175,55,.5);animation:fadeIO 4s ease forwards;}
 @keyframes fadeIO{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+
+/* PLAYER SCREEN */
 .player-screen{position:fixed;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;z-index:8;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-.player-screen.show{opacity:1;pointer-events:all;transition:opacity .8s ease .3s;}
+.player-screen.show{opacity:1;pointer-events:all;}
 .player-header{position:relative;width:100%;height:220px;overflow:hidden;flex-shrink:0;background:#06000e;}
-.player-header video{width:100%;height:100%;object-fit:contain;opacity:.6;display:block;background:#06000e;}
+.player-header video{width:100%;height:100%;object-fit:contain;opacity:.6;display:block;}
 .player-header-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,0,14,.1) 0%,rgba(6,0,14,.95) 100%);}
 .player-header-text{position:absolute;bottom:16px;left:18px;}
 .player-header-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:#c9a84c;margin-bottom:4px;}
@@ -48,8 +55,8 @@ canvas#shootCanvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
 .progress-fill{height:100%;background:linear-gradient(90deg,#7b3fd4,#c084fc);border-radius:2px;width:0%;transition:width .1s linear;}
 .time-row{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:#7b5fa0;}
 .controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:1rem;}
-.btn-skip{width:48px;height:48px;border-radius:50%;background:rgba(123,63,212,.25);border:1px solid rgba(123,63,212,.5);color:#c084fc;font-size:20px;font-weight:bold;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;user-select:none;}
-.btn-play{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#7b3fd4,#3b0070);box-shadow:0 0 20px rgba(120,0,200,.6);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;user-select:none;}
+.btn-skip{width:48px;height:48px;border-radius:50%;background:rgba(123,63,212,.25);border:1px solid rgba(123,63,212,.5);color:#c084fc;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;}
+.btn-play{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#7b3fd4,#3b0070);box-shadow:0 0 20px rgba(120,0,200,.6);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;}
 .btn-skip:active,.btn-play:active{transform:scale(.93);}
 .vol-row{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;}
 .vol-icon{font-size:14px;color:#7b5fa0;}
@@ -72,18 +79,21 @@ canvas#viz{width:100%;height:50px;display:block;margin-bottom:1rem;opacity:.7;}
   <div class="stars-bg" id="stars"></div>
   <canvas id="shootCanvas"></canvas>
 
+  <!-- GIFT -->
   <div class="gift-screen" id="gift">
     <div class="gift-logo">7</div>
     <p class="gift-label">Team 7 präsentiert</p>
     <h1 class="gift-headline">Konzert Erinnerung</h1>
-    <p class="gift-sub">DANKE 💜💚</p>
-    <div class="tap-area" id="giftBtn">▶ Abspielen</div>
+    <p class="gift-sub">DANKE &#128156;&#128154;</p>
+    <div class="tap-area" id="giftBtn">&#9654; Abspielen</div>
   </div>
 
+  <!-- SEVEN -->
   <div class="seven-screen" id="seven">
     <p class="seven-num">7</p>
   </div>
 
+  <!-- PLAYER -->
   <div class="player-screen" id="player">
     <div class="player-header">
       <video id="vid3" src="konzert.mp4" muted loop playsinline webkit-playsinline preload="none"></video>
@@ -106,14 +116,14 @@ canvas#viz{width:100%;height:50px;display:block;margin-bottom:1rem;opacity:.7;}
         <div class="btn-skip" id="btnNext">&#9654;&#9654;</div>
       </div>
       <div class="vol-row">
-        <span class="vol-icon">🔉</span>
+        <span class="vol-icon">&#128265;</span>
         <input type="range" id="volSlider" min="0" max="1" step="0.01" value="0.8">
       </div>
       <canvas id="viz" height="50"></canvas>
       <p class="playlist-label">DOGU SONGS</p>
       <div class="playlist" id="playlist"></div>
-      <a class="yt-link" href="https://www.youtube.com/@Team7Official7" target="_blank">📺 Zu den Videos</a>
-      <div class="footer"><p>✦ Konzert Erinnerung · Team 7 · Die Nacht bleibt ✦</p></div>
+      <a class="yt-link" href="https://www.youtube.com/@Team7Official7" target="_blank">&#128250; Zu den Videos</a>
+      <div class="footer"><p>&#10022; Konzert Erinnerung &middot; Team 7 &middot; Die Nacht bleibt &#10022;</p></div>
     </div>
   </div>
 </div>
@@ -130,65 +140,80 @@ function spawnStar(){const W=sc.width,H=sc.height,fl=Math.random()<.5;const x=fl
 (function draw(){requestAnimationFrame(draw);ctx.clearRect(0,0,sc.width,sc.height);ss=ss.filter(s=>{s.x+=s.vx;s.y+=s.vy;s.life-=.013;if(s.life<=0)return false;const tx=s.x-s.vx*(s.len/Math.max(Math.abs(s.vx),.01))*.45;const ty=s.y-s.vy*(s.len/Math.max(Math.abs(s.vx),.01))*.45;const g=ctx.createLinearGradient(tx,ty,s.x,s.y);g.addColorStop(0,'rgba(200,150,255,0)');g.addColorStop(1,`rgba(230,180,255,${s.life*.65})`);ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(s.x,s.y);ctx.strokeStyle=g;ctx.lineWidth=1.8;ctx.stroke();return true;});})();
 setInterval(spawnStar,2200);
 
-// Tracks - externe MP3 Dateien
-const TRACKS=[
-  {title:'BOMBA',src:'bomba.mp3'},
-  {title:'GİDEMEM',src:'gidemem.mp3'}
-];
+// Audio
+const TRACKS=[{title:'BOMBA',src:'bomba.mp3'},{title:'GİDEMEM',src:'gidemem.mp3'}];
 let cur=0,playing=false;
 const aud=new Audio();
 aud.volume=.8;
 
 function loadTrack(i){cur=i;aud.src=TRACKS[i].src;document.getElementById('trackTitle').textContent=TRACKS[i].title;document.getElementById('progFill').style.width='0%';document.getElementById('tNow').textContent='0:00';document.getElementById('tTotal').textContent='0:00';document.querySelectorAll('.pl-item').forEach((el,j)=>el.classList.toggle('active',j===i));}
-function play(){aud.play().then(()=>{playing=true;document.getElementById('btnPlay').textContent='⏸';initViz();}).catch(e=>console.log(e));}
-function pause(){aud.pause();playing=false;document.getElementById('btnPlay').textContent='▶';}
+function play(){aud.play().then(()=>{playing=true;document.getElementById('btnPlay').innerHTML='&#9646;&#9646;';initViz();}).catch(()=>{});}
+function pause(){aud.pause();playing=false;document.getElementById('btnPlay').innerHTML='&#9654;';}
 function toggle(){if(!aud.src||aud.src===location.href)loadTrack(0);playing?pause():play();}
 
 document.getElementById('btnPlay').addEventListener('click',toggle);
 document.getElementById('btnPrev').addEventListener('click',()=>{loadTrack((cur-1+TRACKS.length)%TRACKS.length);if(playing)play();});
 document.getElementById('btnNext').addEventListener('click',()=>{loadTrack((cur+1)%TRACKS.length);if(playing)play();});
 aud.addEventListener('ended',()=>{loadTrack((cur+1)%TRACKS.length);play();});
-aud.addEventListener('timeupdate',()=>{if(!aud.duration)return;const p=(aud.currentTime/aud.duration)*100;document.getElementById('progFill').style.width=p+'%';document.getElementById('tNow').textContent=fmt(aud.currentTime);document.getElementById('tTotal').textContent=fmt(aud.duration);});
+aud.addEventListener('timeupdate',()=>{if(!aud.duration)return;document.getElementById('progFill').style.width=(aud.currentTime/aud.duration*100)+'%';document.getElementById('tNow').textContent=fmt(aud.currentTime);document.getElementById('tTotal').textContent=fmt(aud.duration);});
 document.getElementById('progBar').addEventListener('click',e=>{if(!aud.duration)return;const r=e.currentTarget.getBoundingClientRect();aud.currentTime=((e.clientX-r.left)/r.width)*aud.duration;});
 document.getElementById('volSlider').addEventListener('input',function(){aud.volume=this.value;this.style.setProperty('--v',this.value*100+'%');});
-function fmt(s){const m=Math.floor(s/60),ss2=Math.floor(s%60);return m+':'+(ss2<10?'0':'')+ss2;}
+function fmt(s){const m=Math.floor(s/60),s2=Math.floor(s%60);return m+':'+(s2<10?'0':'')+s2;}
 
 // Playlist
 const plDiv=document.getElementById('playlist');
-TRACKS.forEach((t,i)=>{const el=document.createElement('div');el.className='pl-item'+(i===0?' active':'');el.innerHTML=`<span class="pl-num">${i+1}</span><div class="pl-info"><p class="pl-title">${t.title}</p></div>`;el.addEventListener('click',()=>{loadTrack(i);play();});plDiv.appendChild(el);});
+TRACKS.forEach((t,i)=>{const el=document.createElement('div');el.className='pl-item'+(i===0?' active':'');el.innerHTML=`<span class="pl-num">${i+1}</span><div><p class="pl-title">${t.title}</p></div>`;el.addEventListener('click',()=>{loadTrack(i);play();});plDiv.appendChild(el);});
 
 // Visualizer
-let vizOk=false,analyser,fdata;
+let vizOk=false,analyser;
 const vizC=document.getElementById('viz'),vCtx=vizC.getContext('2d');
-function initViz(){if(vizOk)return;vizOk=true;try{const ac=new(window.AudioContext||window.webkitAudioContext)();const src=ac.createMediaElementSource(aud);analyser=ac.createAnalyser();analyser.fftSize=128;src.connect(analyser);analyser.connect(ac.destination);fdata=new Uint8Array(analyser.frequencyBinCount);(function dv(){requestAnimationFrame(dv);if(!analyser)return;analyser.getByteFrequencyData(fdata);const W=vizC.width,H=vizC.height;vCtx.clearRect(0,0,W,H);const bw=W/fdata.length;for(let i=0;i<fdata.length;i++){const h=(fdata[i]/255)*H;const g=vCtx.createLinearGradient(0,H,0,H-h);g.addColorStop(0,'rgba(123,63,212,.8)');g.addColorStop(1,'rgba(192,132,252,.3)');vCtx.fillStyle=g;vCtx.fillRect(i*bw+1,H-h,bw-1,h);}})();}catch(e){}}
-window.addEventListener('resize',()=>{vizC.width=vizC.clientWidth;});setTimeout(()=>vizC.width=vizC.clientWidth,100);
+function initViz(){if(vizOk)return;vizOk=true;try{const ac=new(window.AudioContext||window.webkitAudioContext)();const src=ac.createMediaElementSource(aud);analyser=ac.createAnalyser();analyser.fftSize=128;src.connect(analyser);analyser.connect(ac.destination);const fd=new Uint8Array(analyser.frequencyBinCount);(function dv(){requestAnimationFrame(dv);analyser.getByteFrequencyData(fd);const W=vizC.width,H=vizC.height;vCtx.clearRect(0,0,W,H);const bw=W/fd.length;for(let i=0;i<fd.length;i++){const h=(fd[i]/255)*H;const g=vCtx.createLinearGradient(0,H,0,H-h);g.addColorStop(0,'rgba(123,63,212,.8)');g.addColorStop(1,'rgba(192,132,252,.3)');vCtx.fillStyle=g;vCtx.fillRect(i*bw+1,H-h,bw-1,h);}})();}catch(e){}}
+window.addEventListener('resize',()=>{vizC.width=vizC.clientWidth;});
+setTimeout(()=>{vizC.width=vizC.clientWidth;},100);
 
-// Auto-start nach 1 Sek (kein Tippen nötig)
+// Ablauf: Tap → Seven (4s) → Player
 let opened=false;
 function openGift(){
-  if(opened)return;opened=true;
-  // Video starten (braucht User-Gesture auf iOS - Tap funktioniert auch)
-  const v1=document.getElementById('vid1');
-  v1.load();v1.play().catch(()=>{});
-  for(let i=0;i<6;i++)setTimeout(spawnStar,i*100);
-  // Gift weg
-  document.getElementById('gift').classList.add('gone');
-  // Seven-Screen zeigen
-  const sv=document.getElementById('seven');
-  sv.style.animation='none';void sv.offsetWidth;
-  sv.classList.add('show');
-  let si=setInterval(spawnStar,700);
-  // Nach 4s Player zeigen
-  setTimeout(()=>{
+  if(opened)return;
+  opened=true;
+
+  // 1) Gift Screen weg
+  var gift=document.getElementById('gift');
+  gift.style.opacity='0';
+  gift.style.pointerEvents='none';
+
+  // 2) Seven Screen zeigen
+  var sv=document.getElementById('seven');
+  sv.style.opacity='1';
+  sv.style.animation='sevReveal 4s ease forwards';
+
+  // Sternregen
+  for(var i=0;i<8;i++)(function(i){setTimeout(spawnStar,i*80);})(i);
+  var si=setInterval(spawnStar,600);
+
+  // 3) Nach 4.2s: Seven weg, Player rein
+  setTimeout(function(){
     clearInterval(si);
-    const pl=document.getElementById('player');
-    pl.classList.add('show');
-    const v3=document.getElementById('vid3');
-    v3.load();v3.play().catch(()=>{});
+
+    // Seven komplett weg
+    var sv2=document.getElementById('seven');
+    sv2.style.display='none';
+
+    // Player sichtbar
+    var pl=document.getElementById('player');
+    pl.style.opacity='1';
+    pl.style.pointerEvents='all';
+
+    // Video starten
+    var v3=document.getElementById('vid3');
+    v3.load();
+    v3.play().catch(function(){});
+
     loadTrack(0);
     setInterval(spawnStar,2500);
   },4200);
 }
+
 document.getElementById('giftBtn').addEventListener('click',openGift);
 document.getElementById('gift').addEventListener('click',openGift);
 loadTrack(0);
