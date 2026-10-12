@@ -18,22 +18,22 @@ button,a{-webkit-appearance:none;-moz-appearance:none;appearance:none;background
 canvas#shootCanvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
 .gift-screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity .9s,transform .9s;padding:2rem;background:radial-gradient(ellipse at center,rgba(80,0,120,.35) 0%,#06000e 70%);}
 .gift-screen.gone{opacity:0;pointer-events:none;transform:scale(1.05);}
-.gift-video-wrap{width:190px;height:190px;border-radius:16px;overflow:hidden;border:1.5px solid rgba(180,100,255,.5);box-shadow:0 0 50px rgba(120,0,200,.6);margin-bottom:24px;background:#1a0030;}
-.gift-video-wrap video{width:100%;height:100%;object-fit:cover;display:block;}
+.gift-logo{font-family:'Cinzel',serif;font-size:110px;font-weight:700;color:#f0d080;text-shadow:0 0 60px rgba(212,175,55,.9),0 0 120px rgba(212,175,55,.4);margin-bottom:24px;line-height:1;}
 .gift-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:#c9a84c;text-transform:uppercase;text-align:center;margin-bottom:8px;}
 .gift-headline{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:#f0d080;text-align:center;line-height:1.5;margin-bottom:8px;text-shadow:0 0 30px rgba(212,175,55,.7);}
 .gift-sub{font-size:13px;color:#c084fc;text-align:center;letter-spacing:1px;margin-bottom:32px;line-height:1.8;}
 .tap-area{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:#f0d080;border:1px solid rgba(212,175,55,.5);padding:13px 30px;border-radius:50px;background:rgba(212,175,55,.07);text-align:center;cursor:pointer;}
 .seven-screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:9;background:radial-gradient(ellipse at center,rgba(80,0,120,.5) 0%,#06000e 70%);}
 .seven-screen.show{animation:sevReveal 4s ease forwards;}
+.seven-screen.hide{opacity:0;pointer-events:none;}
 @keyframes sevReveal{0%{opacity:0;}8%{opacity:1;}75%{opacity:1;}100%{opacity:0;}}
 .seven-num{font-family:'Cinzel',serif;font-size:120px;font-weight:700;color:#f0d080;letter-spacing:8px;text-shadow:0 0 60px rgba(212,175,55,.9),0 0 120px rgba(212,175,55,.5);animation:fadeIO 4s ease forwards;}
 @keyframes fadeIO{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
 .player-screen{position:fixed;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;z-index:8;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .player-screen.show{opacity:1;pointer-events:all;transition:opacity .8s ease .3s;}
-.player-header{position:relative;width:100%;height:220px;overflow:hidden;flex-shrink:0;background:radial-gradient(ellipse at 50% 30%,rgba(80,0,150,.8) 0%,#06000e 70%);}
-.player-header video{width:100%;height:100%;object-fit:cover;opacity:.55;display:block;}
-.player-header-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,0,14,.2) 0%,rgba(6,0,14,1) 100%);}
+.player-header{position:relative;width:100%;height:220px;overflow:hidden;flex-shrink:0;background:#06000e;}
+.player-header video{width:100%;height:100%;object-fit:contain;opacity:.6;display:block;background:#06000e;}
+.player-header-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,0,14,.1) 0%,rgba(6,0,14,.95) 100%);}
 .player-header-text{position:absolute;bottom:16px;left:18px;}
 .player-header-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:#c9a84c;margin-bottom:4px;}
 .player-header-title{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:#fff;text-shadow:0 0 20px rgba(180,100,255,.9);}
@@ -48,8 +48,8 @@ canvas#shootCanvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
 .progress-fill{height:100%;background:linear-gradient(90deg,#7b3fd4,#c084fc);border-radius:2px;width:0%;transition:width .1s linear;}
 .time-row{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:#7b5fa0;}
 .controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:1rem;}
-.btn-skip{width:48px;height:48px;border-radius:50%;background:rgba(123,63,212,.25);border:1px solid rgba(123,63,212,.5);color:#c084fc;font-size:24px;font-weight:bold;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.btn-play{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#7b3fd4,#3b0070);box-shadow:0 0 20px rgba(120,0,200,.6);color:#fff;font-size:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.btn-skip{width:48px;height:48px;border-radius:50%;background:rgba(123,63,212,.25);border:1px solid rgba(123,63,212,.5);color:#c084fc;font-size:20px;font-weight:bold;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;user-select:none;}
+.btn-play{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#7b3fd4,#3b0070);box-shadow:0 0 20px rgba(120,0,200,.6);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;user-select:none;}
 .btn-skip:active,.btn-play:active{transform:scale(.93);}
 .vol-row{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;}
 .vol-icon{font-size:14px;color:#7b5fa0;}
@@ -73,9 +73,7 @@ canvas#viz{width:100%;height:50px;display:block;margin-bottom:1rem;opacity:.7;}
   <canvas id="shootCanvas"></canvas>
 
   <div class="gift-screen" id="gift">
-    <div class="gift-video-wrap">
-      <video id="vid1" src="konzert.mp4" muted loop playsinline webkit-playsinline preload="none"></video>
-    </div>
+    <div class="gift-logo">7</div>
     <p class="gift-label">Team 7 präsentiert</p>
     <h1 class="gift-headline">Konzert Erinnerung</h1>
     <p class="gift-sub">DANKE 💜💚</p>
@@ -103,14 +101,13 @@ canvas#viz{width:100%;height:50px;display:block;margin-bottom:1rem;opacity:.7;}
         <div class="time-row"><span id="tNow">0:00</span><span id="tTotal">0:00</span></div>
       </div>
       <div class="controls">
-        <div class="btn-skip" id="btnPrev">«</div>
-        <div class="btn-play" id="btnPlay">▶</div>
-        <div class="btn-skip" id="btnNext">»</div>
+        <div class="btn-skip" id="btnPrev">&#9664;&#9664;</div>
+        <div class="btn-play" id="btnPlay">&#9654;</div>
+        <div class="btn-skip" id="btnNext">&#9654;&#9654;</div>
       </div>
       <div class="vol-row">
-        <span class="vol-icon">🔈</span>
+        <span class="vol-icon">🔉</span>
         <input type="range" id="volSlider" min="0" max="1" step="0.01" value="0.8">
-        <span class="vol-icon">🔊</span>
       </div>
       <canvas id="viz" height="50"></canvas>
       <p class="playlist-label">DOGU SONGS</p>
@@ -166,24 +163,31 @@ const vizC=document.getElementById('viz'),vCtx=vizC.getContext('2d');
 function initViz(){if(vizOk)return;vizOk=true;try{const ac=new(window.AudioContext||window.webkitAudioContext)();const src=ac.createMediaElementSource(aud);analyser=ac.createAnalyser();analyser.fftSize=128;src.connect(analyser);analyser.connect(ac.destination);fdata=new Uint8Array(analyser.frequencyBinCount);(function dv(){requestAnimationFrame(dv);if(!analyser)return;analyser.getByteFrequencyData(fdata);const W=vizC.width,H=vizC.height;vCtx.clearRect(0,0,W,H);const bw=W/fdata.length;for(let i=0;i<fdata.length;i++){const h=(fdata[i]/255)*H;const g=vCtx.createLinearGradient(0,H,0,H-h);g.addColorStop(0,'rgba(123,63,212,.8)');g.addColorStop(1,'rgba(192,132,252,.3)');vCtx.fillStyle=g;vCtx.fillRect(i*bw+1,H-h,bw-1,h);}})();}catch(e){}}
 window.addEventListener('resize',()=>{vizC.width=vizC.clientWidth;});setTimeout(()=>vizC.width=vizC.clientWidth,100);
 
-// Gift open
+// Auto-start nach 1 Sek (kein Tippen nötig)
 let opened=false;
 function openGift(){
   if(opened)return;opened=true;
-  document.getElementById('vid1').load();document.getElementById('vid1').play().catch(()=>{});
+  // Video starten (braucht User-Gesture auf iOS - Tap funktioniert auch)
+  const v1=document.getElementById('vid1');
+  v1.load();v1.play().catch(()=>{});
   for(let i=0;i<6;i++)setTimeout(spawnStar,i*100);
+  // Gift weg
   document.getElementById('gift').classList.add('gone');
+  // Seven-Screen zeigen
   const sv=document.getElementById('seven');
   sv.style.animation='none';void sv.offsetWidth;
-  sv.style.animation='sevReveal 4s ease forwards';
+  sv.classList.add('show');
   let si=setInterval(spawnStar,700);
+  // Nach 4s Player zeigen
   setTimeout(()=>{
     clearInterval(si);
-    document.getElementById('player').classList.add('show');
-    document.getElementById('vid3').play().catch(()=>{});
+    const pl=document.getElementById('player');
+    pl.classList.add('show');
+    const v3=document.getElementById('vid3');
+    v3.load();v3.play().catch(()=>{});
     loadTrack(0);
     setInterval(spawnStar,2500);
-  },4300);
+  },4200);
 }
 document.getElementById('giftBtn').addEventListener('click',openGift);
 document.getElementById('gift').addEventListener('click',openGift);
